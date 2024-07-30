@@ -54,30 +54,33 @@ let Player = function (name, piece){
 let player1 = Player("jermain", "O")
 let player2 = Player("richard", "X")
 
-function whoGoFirst(){
-let whoGoFirst = Math.floor(Math.random() * 10)
-console.log(whoGoFirst)
-    if(whoGoFirst % 2 == 0 ){
+/*function whoGoFirst(){
+let ab = Math.floor(Math.random() * 10)
+console.log(ab)
+    if(ab % 2 == 0 ){
+        console.log(ab)
         console.log("Player 1 goes first")
     
         } else{
         console.log("Player 2 goes first")
     }
-}
+}*/
 
-whoGoFirst()
+//whoGoFirst()
 
 let board = play.arr
 
+console.log("Player one always goes first")
 
 function playgame(){
     play.makeBoard()
     console.table(play.arr)
     
-    whoGoFirst()
+    //whoGoFirst()
 
     for (let i = 0; i < 9; i ++){
         if (checkWinner() !== "Done"){
+
             player1.choosePiece()
             player2.choosePiece()
             console.table(board)
@@ -90,42 +93,9 @@ function playgame(){
 }
 playgame()
 
-//let x = prompt("x: coord")
-//let y = prompt("y: coord")
 
-
-
-/*write out flow of game
-play function
-press this to play the game
-prompt do you want to be X or O
-math.random chooses who goes first
-player(?) choose a cell
-if cell has no data, add the new data else return message
-Each turn check winner
-MAKE A CHECK WINNER FUNCTION
-if winner game over else contine
-After game logic is complete make interface window
-*/
-
-/*
-play.arr[x][y] = "O";
-console.log(play.arr)
-
-x = prompt("x: coord")
-y = prompt("y: coord")
-
-play.arr[x][y] = 'O'
-console.log(play.arr)
-
-x = prompt("x: coord")
-y = prompt("y: coord")
-
-play.arr[x][y] = "O"
-console.log(play.arr)
-
-*/
-
+//spend time making random who goes first
+// finish the backend
 
 
 function checkWinner(){
@@ -139,9 +109,21 @@ function checkWinner(){
         (board[0][0] === "O") && (board[1][1] === "O") && (board[2][2] === "O") ||
         (board[0][2] === "O") && (board[1][1] === "O") && (board[0][2] === "O")
     ){
-        console.log("you win")
+        console.log("Y is the winner")
         return "Done"
-    } else{
+    } else if ((board[0][0] === "X") && (board[0][1] === "X") && (board[0][2] === "X") || 
+    (board[1][0] === "X") && (board[1][1] === "X") && (board[1][2] === "X") ||
+    (board[2][0] === "X") && (board[2][1] === "X") && (board[2][2] === "X") ||
+    (board[0][0] === "X") && (board[1][0] === "X") && (board[2][0] === "X") ||
+    (board[0][1] === "X") && (board[1][1] === "X") && (board[2][1] === "X") ||
+    (board[0][2] === "X") && (board[1][2] === "X") && (board[2][2] === "X") ||
+    (board[0][0] === "X") && (board[1][1] === "X") && (board[2][2] === "X") ||
+    (board[0][2] === "X") && (board[1][1] === "X") && (board[0][2] === "X")
+) {
+    console.log("X is the winner")
+        return "Done"
+} else {
+    
         console.log("keep playing")
     }
     
