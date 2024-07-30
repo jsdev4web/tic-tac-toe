@@ -1,8 +1,4 @@
-
-
-//I am rewriting values
-
-// Game board is created here
+// Game board is created here at start
 
 let play = (function(row, column, arr) {
     return {
@@ -23,7 +19,11 @@ let play = (function(row, column, arr) {
     }
 })()
 
+//INIT THE BOARD AT START OF GAME
 play.makeBoard()
+
+//The BOARD IS GLOBAL CODE
+let board = play.arr
 
 // Each player is created here
 
@@ -48,33 +48,65 @@ let Player = function (name, piece){
                 console.log("spot taken, both players go again")
             }
             //console.log(board)
+        },
+        play: function(){
+            play.makeBoard()
+            console.table(play.arr)
+        for (let i = 0; i < 9; i ++){
+                if (this.checkWinner() !== "Done"){
+                    player1.choosePiece()
+                    player2.choosePiece()
+                    console.table(board)
+                } else {
+                    return "Tie"
+                }
+            }
+        },
+        checkWinner: function(){
+            if ((board[0][0] === "O") && (board[0][1] === "O") && (board[0][2] === "O") || 
+                (board[1][0] === "O") && (board[1][1] === "O") && (board[1][2] === "O") ||
+                (board[2][0] === "O") && (board[2][1] === "O") && (board[2][2] === "O") ||
+                (board[0][0] === "O") && (board[1][0] === "O") && (board[2][0] === "O") ||
+                (board[0][1] === "O") && (board[1][1] === "O") && (board[2][1] === "O") ||
+                (board[0][2] === "O") && (board[1][2] === "O") && (board[2][2] === "O") ||
+                (board[0][0] === "O") && (board[1][1] === "O") && (board[2][2] === "O") ||
+                (board[0][2] === "O") && (board[1][1] === "O") && (board[0][2] === "O")
+            ){
+                console.log("O is the winner")
+                return "Done"
+            } 
+            else if ((board[0][0] === "X") && (board[0][1] === "X") && (board[0][2] === "X") || 
+                (board[1][0] === "X") && (board[1][1] === "X") && (board[1][2] === "X") ||
+                (board[2][0] === "X") && (board[2][1] === "X") && (board[2][2] === "X") ||
+                (board[0][0] === "X") && (board[1][0] === "X") && (board[2][0] === "X") ||
+                (board[0][1] === "X") && (board[1][1] === "X") && (board[2][1] === "X") ||
+                (board[0][2] === "X") && (board[1][2] === "X") && (board[2][2] === "X") ||
+                (board[0][0] === "X") && (board[1][1] === "X") && (board[2][2] === "X") ||
+                (board[0][2] === "X") && (board[1][1] === "X") && (board[0][2] === "X")
+            ){
+                console.log("X is the winner")
+                return "Done"
+            } 
+            else {
+                console.log("keep playing")
+            }
         }
+
+        //below is the Player and its return brackets
     }
 }
 
+//***Players for the game are init***
 let player1 = Player("jermain", "O")
 let player2 = Player("richard", "X")
 
-//This function was to decide who goes first but 
-//I may go back and add it later
+//***STARTS THE GAME */
+player1.play()
 
-/*function whoGoFirst(){
-let ab = Math.floor(Math.random() * 10)
-console.log(ab)
-    if(ab % 2 == 0 ){
-        console.log(ab)
-        console.log("Player 1 goes first")
-    
-        } else{
-        console.log("Player 2 goes first")
-    }
-}*/
-//whoGoFirst()
-
-let board = play.arr
-
+//WHO GOES FIRST***
 console.log("Player one always goes first")
 
+/*
 function playgame(){
     play.makeBoard()
     console.table(play.arr)
@@ -90,14 +122,13 @@ function playgame(){
             return "Tie"
         }
     } 
-    
-    
-}
-playgame()
+}*/
+//playgame()
 
 
 // checks for winner whether O or X is choosen
 
+/*
 function checkWinner(){
     if ((board[0][0] === "O") && (board[0][1] === "O") && (board[0][2] === "O") || 
         (board[1][0] === "O") && (board[1][1] === "O") && (board[1][2] === "O") ||
@@ -125,4 +156,6 @@ function checkWinner(){
     
         console.log("keep playing")
     }
-}
+}*/
+
+//WORKING POINT!!!!!!
