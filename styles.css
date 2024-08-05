@@ -1,0 +1,21 @@
+#main {
+
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 400px;
+    margin-left: 20%;
+    margin-top: 15%;
+    
+}
+
+.divs {
+    font-size: 155px;
+    padding-left: 10px; 
+    padding-right: 10px;  
+    text-align:  center;
+    border: 3px solid black;
+    padding: 5px 10px 5px 5px;
+    width: 28%;
+}
