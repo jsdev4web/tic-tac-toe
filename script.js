@@ -73,8 +73,7 @@ let Player = function (name, piece){
         greet: function(){
             console.log("Hello " + this.name + " your playing " +
             "piece is " + piece + ".")
-            return `Hello ${name},
-            your using: ${piece} \n\n`
+            return `Hello ${name}, your using: ${piece} \u00A0\u00A0\u00A0\u00A0`
         },
         choosePiece: function(){
             let targetCells = document.querySelectorAll(".divs")
