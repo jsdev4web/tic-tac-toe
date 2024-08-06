@@ -1,3 +1,10 @@
+
+    html {
+        background-color: blueviolet;
+        color: white;
+    }
+
+
 #main {
 
     display: flex;
@@ -5,8 +12,8 @@
     align-items: center;
     flex-wrap: wrap;
     width: 400px;
-    margin-left: 20%;
-    margin-top: 15%;
+    margin-left: 10%;
+    margin-top: 5%;
     
 }
 
@@ -18,4 +25,19 @@
     border: 3px solid black;
     padding: 5px 10px 5px 5px;
     width: 28%;
+}
+
+
+.buttonHolder {
+    margin-top: 30px;
+    margin-left: 70px;
+}
+
+button{
+    background-color: white;
+    font-size: x-large;
+}
+
+.winAnnounce {
+    font-size: x-large;
 }

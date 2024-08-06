@@ -31,49 +31,33 @@ function domBoard(num){
          myDiv.innerHTML = "#"
          main.append(myDiv) 
     }
-              
 }     
 
 domBoard(9)
-
-// TEST Function to target my clicks
-/*function targetClicks(){
-    let theCells = document.querySelectorAll(".divs")
-    console.log(theCells)
-
-    theCells.forEach((cell, index) => {
-        cell.addEventListener("click", (e) => {
-            console.log(e.target)
-            console.log(index)
-            
-            if (index % 2 == 0){
-                e.target.innerHTML = "x"
-            } else {
-                e.target.innerHTML = "0"
-            }
-        })
-    })
-}
-
-targetClicks()
-*/
-
-//i have the backend index which is row column
-//i have a front end indes for the divs which is 0-8 top to bottom
-//i need to if else the x or o variable
-//turn the game back on and instead of using the prompt,
-//the div clicks need affect front end and back end
 
 
 //INIT THE BOARD AT START OF GAME
 play.makeBoard()
 
+let mainDiv = document.querySelector("#main")
+
+let buttonHolder = document.createElement("div")
+buttonHolder.setAttribute("class", "buttonHolder")
+mainDiv.appendChild(buttonHolder)
+
 //Adds the check winner button
 let winButton = document.createElement("button")
 winButton.innerText = "Check Win"
-let mainDiv = document.querySelector("#main")
-mainDiv.appendChild(winButton)
+buttonHolder.appendChild(winButton)
 
+let startBtn = document.createElement("button")
+//startBtn.setAttribute("class", "startBtn")
+startBtn.innerHTML = "Start Game"
+buttonHolder.appendChild(startBtn)
+
+let winAnnounce = document.createElement("div")
+winAnnounce.setAttribute("class", "winAnnounce")
+buttonHolder.appendChild(winAnnounce)
 
 //The BOARD IS GLOBAL CODE
 let board = play.arr
@@ -90,7 +74,7 @@ let Player = function (name, piece){
             console.log("Hello " + this.name + " your playing " +
             "piece is " + piece + ".")
             return `Hello ${name},
-            your playing piece is ${piece}`
+            your using: ${piece} \n\n`
         },
         choosePiece: function(){
             let targetCells = document.querySelectorAll(".divs")
@@ -186,6 +170,11 @@ let Player = function (name, piece){
                             //console.log(board)
                         }
 
+                        if (index === 2){
+                            board[0][2] = player2.piece
+                            //console.log(board)
+                        }
+
                         if (index === 3){
                             board[1][0] = player2.piece
                             //console.log(board)
@@ -222,33 +211,10 @@ let Player = function (name, piece){
                 })
             })
         },
-        //HERE can i still uses X and Y Coords to match DOMs and players
-        /*choosePiece: function(){
-            let x, y = "";
-            x = prompt("x: coord");
-            y = prompt("y: coord");
-            if (board[x][y] === "#"){
-                board[x][y] = this.piece
-            } else{
-                console.log("spot taken, both players go again")
-            }
-            //console.log(board)
-        },*/
         play: function(){
             play.makeBoard()
             this.choosePiece()
-            //console.table(play.arr)
-        /*for (let i = 0; i < 9; i ++){
-                if (this.checkWinner() !== "Done"){
-                    //player1.choosePiece()
-                    //player2.choosePiece()
-                    this.choosePiece()
-                    console.log(board)
-                    console.table(board)
-                } else {
-                    return "Tie"
-                }
-            }*/
+        
         },
         checkWinner: function(){
             if ((board[0][0] === "O") && (board[0][1] === "O") && (board[0][2] === "O") || 
@@ -258,12 +224,13 @@ let Player = function (name, piece){
                 (board[0][1] === "O") && (board[1][1] === "O") && (board[2][1] === "O") ||
                 (board[0][2] === "O") && (board[1][2] === "O") && (board[2][2] === "O") ||
                 (board[0][0] === "O") && (board[1][1] === "O") && (board[2][2] === "O") ||
-                (board[0][2] === "O") && (board[1][1] === "O") && (board[0][2] === "O")
+                (board[0][2] === "O") && (board[1][1] === "O") && (board[2][0] === "O")
             ){
                 console.log("O is the winner")
+                winAnnounce.innerText = "Player O wins"
                 return "Done"
             } 
-            else if ((board[0][0] === "X") && (board[0][1] === "X") && (board[0][2] === "X") || 
+       else if ((board[0][0] === "X") && (board[0][1] === "X") && (board[0][2] === "X") || 
                 (board[1][0] === "X") && (board[1][1] === "X") && (board[1][2] === "X") ||
                 (board[2][0] === "X") && (board[2][1] === "X") && (board[2][2] === "X") ||
                 (board[0][0] === "X") && (board[1][0] === "X") && (board[2][0] === "X") ||
@@ -273,6 +240,7 @@ let Player = function (name, piece){
                 (board[0][2] === "X") && (board[1][1] === "X") && (board[0][2] === "X")
             ){
                 console.log("X is the winner")
+                winAnnounce.innerText = "Player X wins"
                 return "Done"
             } 
             else {
@@ -284,12 +252,34 @@ let Player = function (name, piece){
     }
 }
 
+let name1 = prompt("Player1 = O, what is your name?")
+let name2 = prompt("Player2 = X, what is your name?")
+
+let whoIs = document.createElement("div")
+whoIs.setAttribute("class", "whoIs")
+document.body.appendChild(whoIs)
+document.body.insertBefore(whoIs, mainDiv)
+
 //***Players for the game are init***
-let player1 = Player("jermain", "O")
-let player2 = Player("richard", "X")
+let player1 = Player(name1, "O")
+player1.greet()
+whoIs.innerText += player1.greet()
+
+let player2 = Player(name2, "X")
+player2.greet()
+whoIs.innerText += player2.greet()
+
+
 
 // TURN GAME OFF or ON !!!!!HERE!!!!!
-player1.play()
+//player1.play()
+
+
+
+startBtn.addEventListener("click", (e) => {
+    player1.play()
+    alert("The game has begun")
+})
 
 //WHO GOES FIRST***
 console.log("Player one always goes first")
@@ -301,6 +291,7 @@ console.log("Player one always goes first")
 //is not taken until the next turn.
 winButton.addEventListener("click", player1.checkWinner)
 winButton.addEventListener("click", player2.checkWinner)
+
 
 
 // I need to check if I can end the game immediately after the clicks
