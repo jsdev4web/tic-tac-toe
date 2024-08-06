@@ -3,7 +3,7 @@
         background-color: blueviolet;
         color: white;
         margin-left: 40%;
-        margin-top: 1%;
+    
     }
 
 
@@ -14,6 +14,7 @@
     align-items: center;
     flex-wrap: wrap;
     width: 400px;
+    margin-top: 10%;
     
 }
 
