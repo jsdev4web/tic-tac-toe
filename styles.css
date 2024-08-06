@@ -2,6 +2,8 @@
     html {
         background-color: blueviolet;
         color: white;
+        margin-left: 40%;
+        margin-top: 1%;
     }
 
 
@@ -12,8 +14,14 @@
     align-items: center;
     flex-wrap: wrap;
     width: 400px;
-    margin-left: 33%;
-    margin-top: 5%;
+    
+}
+
+.whoIs {
+    width: 700px;
+    font-weight: 800;
+    font-size: x-large;
+    margin-bottom: 1%;
     
 }
 
@@ -33,7 +41,7 @@
     margin-left: 70px;
 }
 
-button{
+button {
     background-color: white;
     font-size: x-large;
 }
@@ -42,8 +50,3 @@ button{
     font-size: x-large;
 }
 
-.whoIs {
-    width: 700px;
-    font-size: x-large;
-    margin-left: 30%;
-}
